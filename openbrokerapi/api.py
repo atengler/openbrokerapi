@@ -120,7 +120,7 @@ def get_blueprint(service_broker: ServiceBroker,
             accepts_incomplete = 'true' == request.args.get("accepts_incomplete", 'false')
 
             details = json.loads(request.data)
-            provision_details: ProvisionDetails = ProvisionDetails(**details)
+            provision_details = ProvisionDetails(**details)
         except TypeError as e:
             return to_json_response(ErrorResponse(description=str(e))), HTTPStatus.BAD_REQUEST
 
@@ -146,7 +146,7 @@ def get_blueprint(service_broker: ServiceBroker,
     def update(instance_id):
         try:
             details = json.loads(request.data)
-            update_details: UpdateDetails = UpdateDetails(**details)
+            update_details = UpdateDetails(**details)
 
             accepts_incomplete = 'true' == request.args.get("accepts_incomplete", 'false')
         except TypeError as e:
@@ -172,7 +172,7 @@ def get_blueprint(service_broker: ServiceBroker,
     def bind(instance_id, binding_id):
         try:
             details = json.loads(request.data)
-            binding_details: BindDetails = BindDetails(**details)
+            binding_details = BindDetails(**details)
         except KeyError as e:
             logger.exception(e)
             return to_json_response(ErrorResponse(description=str(e))), HTTPStatus.BAD_REQUEST
@@ -197,7 +197,7 @@ def get_blueprint(service_broker: ServiceBroker,
         try:
             plan_id = request.args["plan_id"]
             service_id = request.args["service_id"]
-            unbind_details: UnbindDetails = UnbindDetails(plan_id, service_id)
+            unbind_details = UnbindDetails(plan_id, service_id)
         except KeyError as e:
             logger.exception(e)
             return to_json_response(ErrorResponse(description=str(e))), HTTPStatus.BAD_REQUEST

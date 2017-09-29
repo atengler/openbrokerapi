@@ -73,7 +73,7 @@ class UpdateDetails:
         self.service_id = service_id
         self.plan_id = plan_id
         self.parameters = parameters
-        self.previous_values: PreviousValues = PreviousValues(**previous_values) if previous_values else None
+        self.previous_values = PreviousValues(**previous_values) if previous_values else None
 
 
 class UpdateServiceSpec:
